@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Caca ❤️</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            margin: 0;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        h1 {
+            color: #e74c3c;
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .subtitle {
+            color: #3498db;
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+        
+        .music-section {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+            border-left: 4px solid #3498db;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        
+        #music-title {
+            font-size: 1.6rem;
+            color: #27ae60;
+            margin: 15px 0;
+            font-weight: bold;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        button {
+            background: linear-gradient(to bottom, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.2s;
+            box-shadow: 0 4px 6px rgba(52, 152, 219, 0.3);
+        }
+        
+        button:hover {
+            background: linear-gradient(to bottom, #2980b9, #1a6ba5);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(52, 152, 219, 0.4);
+        }
+        
+        #gombalan-area {
+            background: #f1f8ff;
+            border-radius: 10px;
+            padding: 20px;
+            min-height: 100px;
+            margin: 25px 0;
+            border: 1px solid #d6eaf8;
+            font-size: 1.2rem;
+            color: #2c3e50;
+            line-height: 1.6;
+            transition: all 0.3s;
+        }
+        
+        #gombalan-area:hover {
+            background: #e8f4ff;
+            transform: scale(1.02);
+        }
+        
+        .footer {
+            margin-top: 25px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        .emoji {
+            font-size: 1.5rem;
+            margin: 0 5px;
+        }
+        
+        audio {
+            width: 100%;
+            margin-top: 15px;
+            display: none;
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px 15px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Untuk Caca ❤️</h1>
+        <p class="subtitle">Kumpulan momen spesial kita ✨</p>
+        
+        <div class="music-section">
+            <div id="music-title">Blue - Yung Kai Cover By LimeKAMNH</div>
+            <div class="controls">
+                <button id="play-btn">▶</button>
+                <button id="pause-btn">⏸</button>
+                <button id="next-btn">▶ Next</button>
+            </div>
+            <audio id="music-audio" controls>
+                <source src="blue.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        
+        <div id="gombalan-area">Klik tombol di bawah ya... 💕</div>
+        <button id="gombalan-btn">✨ Ganti Gombalan 🔄</button>
+        
+        <div class="footer">
+            <p>Created with ❤️ for Caca | <span class="emoji">🌙</span> <span class="emoji">✨</span> <span class="emoji">💖</span></p>
+        </div>
+    </div>
+
+    <script>
+        // Array of songs with their sources and titles
+        const songs = [
+            { src: 'blue.mp3', title: 'Blue - Yung Kai Cover By Lime' },
+            { src: 'emin.mp3', title: 'Kamnh - Emin ft Jony' }
+        ];
+        
+        let currentSongIndex = 0;
+        let isPlaying = false;
+        
+        // Initialize audio controls
+        const audio = document.getElementById('music-audio');
+        const playBtn = document.getElementById('play-btn');
+        const pauseBtn = document.getElementById('pause-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const musicTitle = document.getElementById('music-title');
+        
+        // Set initial state
+        playBtn.textContent = '▶';
+        musicTitle.textContent = songs[currentSongIndex].title;
+        
+        // Play/Pause functionality
+        playBtn.addEventListener('click', function() {
+            if (isPlaying) {
+                audio.pause();
+                playBtn.textContent = '▶';
+                isPlaying = false;
+            } else {
+                audio.play();
+                playBtn.textContent = '⏸';
+                isPlaying = true;
+            }
+        });
+        
+        pauseBtn.addEventListener('click', function() {
+            if (isPlaying) {
+                audio.pause();
+                playBtn.textContent = '▶';
+                isPlaying = false;
+            } else {
+                audio.play();
+                playBtn.textContent = '⏸';
+                isPlaying = true;
+            }
+        });
+        
+        // Next song functionality
+        nextBtn.addEventListener('click', function() {
+            // Stop current audio
+            audio.pause();
+            
+            // Move to next song (loop back to first if at last)
+            currentSongIndex = (currentSongIndex + 1) % songs.length;
+            
+            // Update audio source and title
+            audio.src = songs[currentSongIndex].src;
+            musicTitle.textContent = songs[currentSongIndex].title;
+            
+            // If it was playing, start the new song
+            if (isPlaying) {
+                audio.play().catch(e => {
+                    console.log("Auto-play blocked, user interaction needed");
+                });
+            }
+        });
+        
+        // Gombalan function
+        function gantiGombalan() {
+            const gombalan = [
+                "Kamu itu seperti WiFi, bikin aku nggak bisa move on! 📶",
+                "Kalau kamu jadi bintang, aku mau jadi langit, biar bisa peluk kamu setiap malam ✨",
+                "Aku nggak butuh Google, karena kamu adalah jawaban dari semua pertanyaanku 💕",
+                "Kamu itu seperti kopi, pahit tapi bikin nagih! ☕",
+                "Cintaku padamu itu seperti file HTML, nggak pernah ada closing tag-nya! ❤️",
+                "Setiap senyummu adalah musik yang mengalun di hatiku. 🎵",
+                "Aku ingin jadi hari yang selalu bersamamu, seperti musik yang tak pernah berhenti. 💖"
+            ];
+            const random = gombalan[Math.floor(Math.random() * gombalan.length)];
+            document.getElementById("gombalan-area").textContent = random;
+        }
+        
+        // Initialize music when page loads
+        window.addEventListener('load', function() {
+            // Check if audio is loaded
+            audio.addEventListener('loadeddata', function() {
+                musicTitle.textContent = songs[currentSongIndex].title + ' (Siap diputar!)';
+            });
+            
+            // Auto-play after a short delay to prevent blocking
+            setTimeout(() => {
+                if (audio.readyState >= 2) {
+                    audio.play().catch(e => {
+                        console.log("Auto-play blocked, user interaction needed");
+                    });
+                }
+            }, 2000);
+        });
+        
+        // Add event listener for gombalan button
+        document.getElementById('gombalan-btn').addEventListener('click', gantiGombalan);
+    </script>
+</body>
+</html>
